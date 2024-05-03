@@ -47,7 +47,7 @@ const SignUpPage = () => {
             <img className="w-52 object-contain" src={logo} alt="" />
           </Link>
           <p className="text-sm mt-5 text-center md:text-left">
-            This is a demo project. You can sign in with your email and password
+            This is a demo project. You can sign up with your email and password
             or with Google.
           </p>
         </div>

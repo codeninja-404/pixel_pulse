@@ -32,7 +32,7 @@ const Header = () => {
         </Button>
         <Link>
           <Button gradientDuoTone="pinkToOrange" className="" outline>
-            Sign In
+            <Link to="/sign-in"> Sign In</Link>
           </Button>
         </Link>
         <Navbar.Toggle />
