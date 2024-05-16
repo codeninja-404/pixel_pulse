@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "/pplogo.svg";
 import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import { useState } from "react";
+import OAuth from "../../components/Shared/OAuth";
 const SignUpPage = () => {
   const [formData, setFormData] = useState({});
   const [errorMessage, setErrorMessagge] = useState(null);
@@ -95,6 +96,7 @@ const SignUpPage = () => {
                 "Sign Up"
               )}
             </Button>
+            <OAuth />
           </form>
           <div className="flex gap-2 text-sm mt-5">
             <span>Have an account?</span>
