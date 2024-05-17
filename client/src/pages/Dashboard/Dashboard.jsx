@@ -1,25 +1,28 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import DashSidebar from "../../components/Dashboard/DashSidebar";
+import DashProfile from "../../components/Dashboard/DashProfile";
 
 const Dashboard = () => {
+  const location = useLocation();
+  const [tab, setTab] = useState("");
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const tabFromUrl = urlParams.get("tab");
+    if (tabFromUrl) {
+      setTab(tabFromUrl);
+    }
+  }, [location.search]);
   return (
-    <div className="min-h-screen pt-32">
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
-      facere soluta necessitatibus neque! Doloremque harum cum accusamus, iure
-      cumque voluptatem tenetur ratione voluptatibus dolore blanditiis. Odit
-      quas similique quae fuga! Lorem ipsum, dolor sit amet consectetur
-      adipisicing elit. Cum perspiciatis quisquam repellendus. Sint voluptatibus
-      repellendus repudiandae amet corrupti molestias eaque. ta necessitatibus
-      neque! Doloremque harum cum accusamus, iure cumque voluptatem tenetur
-      ratione voluptatibus dolore blanditiis. Odit quas similique quae fuga!
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cum perspiciatis
-      quisquam repellendus. Sint voluptatibusta necessitatibus neque! Doloremque
-      harum cum accusamus, iure cumque voluptatem tenetur ratione voluptatibus
-      dolore blanditiis. Odit quas similique quae fuga! Lorem ipsum, dolor sit
-      amet consectetur adipisicing elit. Cum perspiciatis quisquam repellendus.
-      Sint voluptatibusta necessitatibus neque! Doloremque harum cum accusamus,
-      iure cumque voluptatem tenetur ratione voluptatibus dolore blanditiis.
-      Odit quas similique quae fuga! Lorem ipsum, dolor sit amet consectetur
-      adipisicing elit. Cum perspiciatis quisquam repellendus. Sint voluptatibus
+    <div className="min-h-screen pt-[62px] flex flex-col md:flex-row">
+      <div className="md:w-56">
+        {/* dashboard sidebar */}
+        <DashSidebar />
+      </div>
+      <div>
+        {/* contents */}
+        {tab === "profile" && <DashProfile />}
+      </div>
     </div>
   );
 };
