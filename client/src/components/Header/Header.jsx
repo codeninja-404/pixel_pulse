@@ -37,7 +37,7 @@ const Header = () => {
           onClick={() => {
             dispatch(toggleTheme());
           }}
-          className="hidden sm:inline"
+          className="hidden sm:inline "
           color="gray"
           pill
         >
