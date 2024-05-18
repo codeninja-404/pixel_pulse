@@ -19,7 +19,7 @@ const Dashboard = () => {
         {/* dashboard sidebar */}
         <DashSidebar />
       </div>
-      <div>
+      <div className="md:w-[calc(100vw-14rem)]">
         {/* contents */}
         {tab === "profile" && <DashProfile />}
       </div>
