@@ -16,13 +16,17 @@ export const signup = async (req, res, next) => {
     // return res.status(400).json({ message: "All Fields required" });
     next(errorHandler(400, "All Fields required"));
   }
-
   const hashedPassword = bcryptjs.hashSync(password, 10);
-
   const newUser = new User({ username, email, password: hashedPassword });
-
   try {
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return next(errorHandler(400, "User with this email already exists"));
+    }
+    const hashedPassword = bcryptjs.hashSync(password, 10);
+    const newUser = new User({ username, email, password: hashedPassword });
     await newUser.save();
+
     res.json("Signup Successful.");
   } catch (error) {
     next(error);
@@ -45,7 +49,7 @@ export const signin = async (req, res, next) => {
     }
     const token = jwt.sign(
       {
-        userId: validUser._id,
+        id: validUser._id,
       },
       process.env.JWT_SECRET,
       { expiresIn: "1d" }
