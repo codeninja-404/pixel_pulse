@@ -1,4 +1,4 @@
-# Full Stack Vite React App
+# PIXEL-PULSE
 
 This repository contains a full stack application with a Vite React frontend and a Node.js/Express backend.
 
@@ -29,7 +29,10 @@ Follow these steps to get the application up and running:
 ### Clone the Repository
 
 ```bash
-git clone <repository-url>
+#SSH
+git clone git@github.com:codeninja-404/pixel_pulse.git
+#HTTPS 
+git clone https://github.com/codeninja-404/pixel_pulse.git
 ```
 
 ### Navigate to the Project Directory
@@ -58,7 +61,7 @@ npm start
 yarn start
 ```
 
-The server will be running on [http://localhost:5000](http://localhost:5000) by default.
+The server will be running on [http://localhost:3000](http://localhost:3000).
 
 ### Install Client Dependencies
 
@@ -81,7 +84,7 @@ npm run dev
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to view the app. The page will auto-reload as you make changes.
+Open [http://localhost:5173](http://localhost:5173) in your browser to view the app. The page will auto-reload as you make changes.
 
 ## Build for Production
 
@@ -101,10 +104,4 @@ This will generate an optimized build in the `client/dist` directory.
 
 The server typically doesn't need a build step if it's a simple Node.js app. Ensure your production server is configured to serve the built React app.
 
-## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-**Happy Coding!** 🚀
