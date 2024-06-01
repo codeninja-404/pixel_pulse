@@ -6,7 +6,6 @@ export const test = (req, res) => {
 };
 
 export const updateUser = async (req, res, next) => {
-  console.log(req.user.id, req.params.userId);
   if (req.user.id !== req.params.userId) {
     return next(errorHandler(403, "Invalid user"));
   }
@@ -50,4 +49,16 @@ export const updateUser = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+};
+
+export const deleteUser = async (req, res, next) => {
+  console.log(req.user.id, req.params.userId);
+
+  if (req.user.id !== req.params.userId) {
+    return next(errorHandler(403, "You do not have permission to delete"));
+  }
+  try {
+    await User.findByIdAndDelete(req.params.userId);
+    res.status(200).json('User has been deleted');
+  } catch (error) {}
 };
