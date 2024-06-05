@@ -1,4 +1,4 @@
-import User from "../modals/user.modal.js";
+import User from "../modals/user.model.js";
 import { errorHandler } from "../utils/error.js";
 import bcryptjs from "bcryptjs";
 export const test = (req, res) => {
@@ -18,7 +18,7 @@ export const updateUser = async (req, res, next) => {
   if (req.body.username) {
     if (req.body.username.length < 7 || req.body.username.length > 20) {
       return next(
-        errorHandler(400, "Username must be between 7 to 20 characters")
+        errorHandler(400, "Username must be between 7 to 20 characters"),
       );
     }
     if (req.body.username.includes(" ")) {
@@ -29,7 +29,7 @@ export const updateUser = async (req, res, next) => {
     }
     if (!req.body.username.match(/^[a-zA-Z0-9]+$/)) {
       return next(
-        errorHandler(400, "Username can only contain letters, numbers")
+        errorHandler(400, "Username can only contain letters, numbers"),
       );
     }
   }
@@ -42,7 +42,7 @@ export const updateUser = async (req, res, next) => {
         password: req.body.password,
         profilePicture: req.body.profilePicture,
       },
-      { new: true }
+      { new: true },
     );
     const { password, ...rest } = updateUser._doc;
     res.status(200).json(rest);
@@ -59,13 +59,16 @@ export const deleteUser = async (req, res, next) => {
   }
   try {
     await User.findByIdAndDelete(req.params.userId);
-    res.status(200).json('User has been deleted');
+    res.status(200).json("User has been deleted");
   } catch (error) {}
 };
-export const signout = (req, res,next) => {
-try {
-  res.clearCookie("access_token").status(200).json('User has been signed out');
-} catch (error) {
-  next(error);
-}
+export const signout = (req, res, next) => {
+  try {
+    res
+      .clearCookie("access_token")
+      .status(200)
+      .json("User has been signed out");
+  } catch (error) {
+    next(error);
+  }
 };

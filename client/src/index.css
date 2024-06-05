@@ -9,3 +9,10 @@ body {
 .ql-editor {
   font-size: 1.05rem;
 }
+.ql-toolbar {
+  border-radius: 10px 10px 0 0 !important;
+}
+
+.ql-container {
+  border-radius: 0 0 10px 10px !important;
+}
