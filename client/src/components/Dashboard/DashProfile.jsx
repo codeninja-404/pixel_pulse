@@ -1,6 +1,7 @@
-import { Alert, Button, Modal, TextInput } from "flowbite-react";
+import { Alert, Button, Modal, Spinner, TextInput } from "flowbite-react";
 import { useEffect, useRef, useState } from "react";
-import { PiInfinity, PiWarningDiamondThin } from "react-icons/pi";
+import { Link } from "react-router-dom";
+import { PiWarningDiamondThin } from "react-icons/pi";
 import { useSelector } from "react-redux";
 import {
   getDownloadURL,
@@ -22,7 +23,7 @@ import {
 } from "../../redux/user/userSlice";
 import { useDispatch } from "react-redux";
 const DashProfile = () => {
-  const { currentUser, error } = useSelector((state) => state.user);
+  const { currentUser, error, loading } = useSelector((state) => state.user);
   const [imageFile, setImageFile] = useState(null);
   const [imageFileUrl, setImageFileUrl] = useState(null);
   const [imageFileUploadingProgress, setimageFileUploadingProgress] =
@@ -217,9 +218,25 @@ const DashProfile = () => {
           defaultValue="**********"
           onChange={handleChange}
         />
-        <Button type="submit" gradientDuoTone="purpleToBlue">
-          Update
+        <Button
+          type="submit"
+          gradientDuoTone="purpleToBlue"
+          disabled={loading || imageFileUploading}
+        >
+          {loading || imageFileUploading ? (
+            <div className="flex gap-4 items-center">
+              <Spinner />
+              <span>Loading</span>
+            </div>
+          ) : (
+            "Update"
+          )}
         </Button>
+        {currentUser.isAdmin && (
+          <Link to={"/create-post"}>
+            <Button className="w-full">Create a POST</Button>
+          </Link>
+        )}
       </form>
       <div className="text-red-500 flex justify-between mt-5">
         <span onClick={() => setShowModal(true)} className="cursor-pointer">
