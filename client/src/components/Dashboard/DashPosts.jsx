@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 const DashPosts = () => {
   const { currentUser } = useSelector((state) => state.user);
   const [userPosts, setUserPosts] = useState([]);
-  const [showMore, setShowMore] = useState(true);
+  const [showMore, setShowMore] = useState(false);
+  console.log(userPosts.length);
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -14,8 +15,11 @@ const DashPosts = () => {
         const data = await res.json();
         if (res.ok) {
           setUserPosts(data.posts);
-          if (data.length < 9) {
+          if (data.length <= 9) {
             setShowMore(false);
+          }
+          if (data.posts.length > 9) {
+            setShowMore(true);
           }
         }
       } catch (error) {
@@ -35,15 +39,22 @@ const DashPosts = () => {
       );
       const data = await res.json();
       if (res.ok) {
-        setUserPosts((prev) => [...prev, data.posts]);
-        if (data.posts.length < 9) {
+        setUserPosts((prev) => [...prev, ...data.posts]);
+        if (data.posts.length <= 9) {
           setShowMore(false);
+        }
+        if (data.posts.length > 9) {
+          setShowMore(true);
         }
       }
     } catch (error) {
       console.log(error.message);
     }
   };
+
+  useEffect(() => {
+    console.log("showMore:", showMore);
+  }, [showMore]);
   return (
     <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar  scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500 h-full">
       {currentUser.isAdmin && userPosts.length > 0 ? (
@@ -100,13 +111,16 @@ const DashPosts = () => {
               </Table.Body>
             ))}
           </Table>
+
           {showMore && (
-            <button
-              onClick={handleShowMore}
-              className="w-full py-7 text-sm text-teal-500 self-center"
-            >
-              Show More
-            </button>
+            <div className=" mx-auto flex justify-center">
+              <button
+                onClick={handleShowMore}
+                className=" my-7 px-4 py-1 rounded-lg text-sm bg-gray-500/30  self-center"
+              >
+                Show More
+              </button>
+            </div>
           )}
         </>
       ) : (
