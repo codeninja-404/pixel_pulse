@@ -2,6 +2,7 @@ import User from "../modals/user.model.js";
 import bcryptjs from "bcryptjs";
 import { errorHandler } from "../utils/error.js";
 import jwt from "jsonwebtoken";
+import Post from "../modals/post.model.js";
 export const signup = async (req, res, next) => {
   const { username, email, password } = req.body;
 
@@ -106,6 +107,20 @@ export const google = async (req, res, next) => {
         })
         .json(rest);
     }
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deletepost = async (req, res, next) => {
+  if (!req.user.isAdmin || req.user.id !== req.params.userId) {
+    return next(
+      errorHandler(403, "You do not have permission to Delete this post"),
+    );
+  }
+  try {
+    await Post.findByIdAndDelete(req.params.postId);
+    res.status(200).json("Post has been deleted");
   } catch (error) {
     next(error);
   }
