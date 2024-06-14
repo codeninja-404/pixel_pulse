@@ -19,3 +19,82 @@ body {
 .quill > .ql-container > .ql-editor.ql-blank::before {
   color: #504e5c;
 }
+
+/* Headings */
+.post-content h3 {
+  font-size: 1.5em;
+  margin-top: 1.5em;
+  color: #333;
+}
+
+/* Ordered List */
+.post-content ol {
+  padding-left: 20px;
+  margin-bottom: 1em;
+}
+
+/* List Items */
+.post-content ol li {
+  margin-bottom: 0.5em;
+  color: #555;
+}
+
+/* Code Blocks */
+.post-content pre {
+  background-color: #090808;
+  color: #f8f8f2;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+  margin: 24px;
+}
+
+.post-content pre code {
+  font-family: "Source Code Pro", monospace;
+}
+
+/* Inline Code */
+.post-content code {
+  background-color: #f4f4f4;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: 0.95em;
+  color: #c7254e;
+}
+
+/* Links */
+.post-content a {
+  color: #1e90ff;
+  text-decoration: none;
+}
+
+.post-content a:hover {
+  text-decoration: underline;
+}
+
+/* Unordered List */
+.post-content ul {
+  padding-left: 20px;
+  margin-bottom: 1em;
+}
+
+/* List Items */
+.post-content ul li {
+  margin-bottom: 0.5em;
+  color: #555;
+}
+
+/* Blockquote */
+.post-content blockquote {
+  margin: 1em 0;
+  padding: 10px 20px;
+  background: #f9f9f9;
+  border-left: 5px solid #ccc;
+  color: #666;
+  font-style: italic;
+}
+
+/* Miscellaneous */
+.post-content strong {
+  color: #078b00;
+}
