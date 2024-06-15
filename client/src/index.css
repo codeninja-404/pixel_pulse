@@ -41,12 +41,13 @@ body {
 
 /* Code Blocks */
 .post-content pre {
-  background-color: #090808;
+  background-color: #6c6c6c;
   color: #f8f8f2;
   padding: 10px;
   border-radius: 5px;
   overflow-x: auto;
   margin: 24px;
+  white-space: pre-wrap;
 }
 
 .post-content pre code {
@@ -96,5 +97,87 @@ body {
 
 /* Miscellaneous */
 .post-content strong {
-  color: #078b00;
+  color: #020d01;
+}
+
+/* Dark Theme */
+
+/* Headings */
+.dark .post-content h3 {
+  font-size: 1.5em;
+  margin-top: 1.5em;
+  color: #f0f0f0;
+}
+
+/* Ordered List */
+.dark .post-content ol {
+  padding-left: 20px;
+  margin-bottom: 1em;
+}
+
+/* List Items */
+.dark .post-content ol li {
+  margin-bottom: 0.5em;
+  color: #cccccc;
+}
+
+/* Code Blocks */
+.dark .post-content pre {
+  background-color: #2d2d2d;
+  color: #f8f8f2;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+  margin: 24px;
+  white-space: pre-wrap;
+}
+
+.dark .post-content pre code {
+  font-family: "Source Code Pro", monospace;
+}
+
+/* Inline Code */
+.dark .post-content code {
+  background-color: #444444;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: 0.95em;
+  color: #ff79c6;
+}
+
+/* Links */
+.dark .post-content a {
+  color: #1e90ff;
+  text-decoration: none;
+}
+
+.dark .post-content a:hover {
+  text-decoration: underline;
+}
+
+/* Unordered List */
+.dark .post-content ul {
+  padding-left: 20px;
+  margin-bottom: 1em;
+}
+
+/* List Items */
+.dark .post-content ul li {
+  margin-bottom: 0.5em;
+  color: #cccccc;
+}
+
+/* Blockquote */
+.dark .post-content blockquote {
+  margin: 1em 0;
+  padding: 10px 20px;
+  background: #3a3a3a;
+  border-left: 5px solid #555555;
+  color: #aaaaaa;
+  font-style: italic;
+}
+
+/* Miscellaneous */
+.dark .post-content strong {
+  color: #78d600;
 }

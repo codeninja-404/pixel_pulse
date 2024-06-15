@@ -1,6 +1,7 @@
 import { Button, Spinner } from "flowbite-react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import CallToAction from "../../components/Shared/CallToAction";
 const PostPage = () => {
   const { postSlug } = useParams();
   const [loading, setLoading] = useState(true);
@@ -53,9 +54,9 @@ const PostPage = () => {
       <img
         src={post && post.image}
         alt={post && post.title}
-        className="mt-10 p-3 max-h-[500px] w-full rounded-3xl  object-cover"
+        className="mt-5 p-3 max-h-[500px] w-full rounded-3xl  object-cover"
       />
-      <div className="flex justify-between  border-b border-slate-500 p-3 mx-auto w-full max-w-3xl text-xs">
+      <div className="flex justify-between  border-b border-slate-500 p-3 mx-auto w-full max-w-2xl text-xs">
         <span>{post && new Date(post.createdAt).toLocaleDateString()}</span>
         <span className="italic">
           {post && (post.content.length / 1000).toFixed(0)} mins read
@@ -65,6 +66,9 @@ const PostPage = () => {
         className="p-3 max-w-2xl mx-auto w-full post-content"
         dangerouslySetInnerHTML={{ __html: post && post.content }}
       ></div>
+      <div className="max-w-4xl mx-auto my-10 w-full">
+        <CallToAction />
+      </div>
     </main>
   );
 };
