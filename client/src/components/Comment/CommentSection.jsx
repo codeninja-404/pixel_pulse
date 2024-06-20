@@ -7,11 +7,21 @@ const CommentSection = ({ postId }) => {
 
   const [comment, setComment] = useState("");
   const [commentError, setCommentError] = useState(null);
-
+  const [commentSuccess, setCommentSuccess] = useState(null);
+  const trimmedComment = comment.trim();
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setCommentError(null);
+    setCommentSuccess(null);
     if (comment === "") {
       setCommentError("Please enter a comment");
+      return;
+    }
+
+    if (trimmedComment === "") {
+      setCommentError(
+        "Please enter a valid comment containing meaningful characters or words",
+      );
       return;
     }
     if (comment.length > 200) {
@@ -33,9 +43,11 @@ const CommentSection = ({ postId }) => {
       if (res.ok) {
         setComment("");
         setCommentError(null);
+        setCommentSuccess("Comment successfully submitted");
       }
     } catch (error) {
       setCommentError(error.message);
+      setCommentSuccess(null);
     }
   };
   return (
@@ -83,13 +95,14 @@ const CommentSection = ({ postId }) => {
               Submit
             </Button>
           </div>
-          {commentError ? (
+          {commentError && (
             <Alert color="failure" className="mt-5">
               {commentError}
             </Alert>
-          ) : (
+          )}
+          {commentSuccess && (
             <Alert color="success" className="mt-5">
-              Comment successfully submitted
+              {commentSuccess}
             </Alert>
           )}
         </form>
