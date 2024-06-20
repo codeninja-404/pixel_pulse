@@ -46,6 +46,7 @@ const CommentSection = ({ postId }) => {
         setComment("");
         setCommentError(null);
         setCommentSuccess("Comment successfully submitted");
+        setComments([data, ...comments]);
       }
     } catch (error) {
       setCommentError(error.message);
