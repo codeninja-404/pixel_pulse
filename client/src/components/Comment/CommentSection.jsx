@@ -10,7 +10,7 @@ const CommentSection = ({ postId }) => {
   const [commentError, setCommentError] = useState(null);
   const [commentSuccess, setCommentSuccess] = useState(null);
   const [comments, setComments] = useState([]);
-  console.log(comments);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setCommentError(null);
@@ -79,17 +79,16 @@ const CommentSection = ({ postId }) => {
       });
       if (res.ok) {
         const data = await res.json();
-        console.log(data);
         setComments(
-          comments.map((comment) => {
+          comments.map((comment) =>
             comment._id === commentId
               ? {
                   ...comment,
                   likes: data.likes,
                   numberOfLikes: data.likes.length,
                 }
-              : comment;
-          }),
+              : comment,
+          ),
         );
       }
     } catch (error) {
