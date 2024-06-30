@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import CallToAction from "../../components/Shared/CallToAction";
 import CommentSection from "../../components/Comment/CommentSection";
+import PostCard from "../../components/Shared/PostCard";
 const PostPage = () => {
   const { postSlug } = useParams();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [post, setPost] = useState(null);
+  const [recentPosts, setRecentPosts] = useState(null);
   useEffect(() => {
     const fetchPost = async () => {
       try {
@@ -31,6 +33,21 @@ const PostPage = () => {
     };
     fetchPost();
   }, [postSlug]);
+
+  useEffect(() => {
+    try {
+      const fetchRecentPosts = async () => {
+        const res = await fetch(`/api/post/getposts?limit=3`);
+        const data = await res.json();
+        if (res.ok) {
+          setRecentPosts(data.posts);
+        }
+      };
+      fetchRecentPosts();
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
   if (loading) {
     return (
       <div className="min-h-screen pt-20 flex justify-center items-center">
@@ -40,7 +57,7 @@ const PostPage = () => {
   }
   return (
     <main className="min-h-screen pt-20 flex flex-col max-w-6xl mx-auto">
-      <h1 className="text-3xl mt-8 p-3 text-center font-serif max-w=2xl mx-auto lg:text-4xl">
+      <h1 className="whitespace-pre-line  break-all text-3xl mt-8 p-3 text-center font-serif max-w=2xl mx-auto lg:text-4xl">
         {post && post.title}
       </h1>
       <Link
@@ -71,6 +88,15 @@ const PostPage = () => {
         <CallToAction />
       </div>
       <CommentSection postId={post._id} />
+      <div className="flex flex-col justify-center items-center mb-5 ">
+        <h1 className="text-xl mt-5 "> Recent Articles</h1>
+        <div className="flex flex-wrap justify-center gap-5">
+          {recentPosts &&
+            recentPosts.map((post) => (
+              <PostCard key={post._id} post={post}></PostCard>
+            ))}
+        </div>
+      </div>
     </main>
   );
 };
