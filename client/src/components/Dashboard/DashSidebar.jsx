@@ -7,6 +7,7 @@ import {
   HiUser,
 } from "react-icons/hi";
 import { LiaCommentSolid } from "react-icons/lia";
+import { LuLayoutDashboard } from "react-icons/lu";
 import { Link, useLocation } from "react-router-dom";
 import { signoutSuccess } from "../../redux/user/userSlice";
 import { useDispatch } from "react-redux";
@@ -42,6 +43,17 @@ const DashSidebar = () => {
       <Sidebar.Items>
         <Sidebar.ItemGroup className="flex flex-col gap-1">
           <Link to="/dashboard?tab=profile">
+            {currentUser.isAdmin && (
+              <Link to="/dashboard?tab=dash">
+                <Sidebar.Item
+                  active={tab === "dash" || !tab}
+                  icon={LuLayoutDashboard}
+                  as="div"
+                >
+                  Dash
+                </Sidebar.Item>
+              </Link>
+            )}
             <Sidebar.Item
               active={tab === "profile"}
               icon={HiUser}
