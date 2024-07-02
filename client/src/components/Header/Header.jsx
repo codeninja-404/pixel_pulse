@@ -22,26 +22,29 @@ const Header = () => {
         toggleNav ? "translate-y-0 top-10 md:top-[58px]" : " -translate-y-full"
       }  left-0 right-0  py-2 text-center bg-slate-100 dark:bg-[#1f2937]`}
     >
-      <li
-        className="p-2 w-1/2 my-2 mx-auto hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md "
-        active={path === "/"}
-        as={"div"}
-      >
-        <Link to="/">Home</Link>
+      <li className=" " active={path === "/"} as={"div"}>
+        <Link
+          className="p-2 block w-1/2 my-2 mx-auto hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md"
+          to="/"
+        >
+          Home
+        </Link>
       </li>
-      <li
-        className="p-2 w-1/2 my-2 mx-auto hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md "
-        active={path === "/about"}
-        as={"div"}
-      >
-        <Link to="/about">About</Link>
+      <li active={path === "/about"} as={"div"}>
+        <Link
+          className="p-2 block w-1/2 my-2 mx-auto hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md"
+          to="/about"
+        >
+          About
+        </Link>
       </li>
-      <li
-        className="p-2 w-1/2 my-2 mx-auto hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md  "
-        active={path === "/projects"}
-        as={"div"}
-      >
-        <Link to="/projects">Projects</Link>
+      <li active={path === "/projects"} as={"div"}>
+        <Link
+          className="p-2 block w-1/2 my-2 mx-auto hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md"
+          to="/projects"
+        >
+          Projects
+        </Link>
       </li>
     </ul>
     // </div>
