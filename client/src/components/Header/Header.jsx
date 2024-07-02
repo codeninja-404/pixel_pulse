@@ -1,4 +1,4 @@
-import { Avatar, Button, Dropdown, Navbar, TextInput } from "flowbite-react";
+import { Button, Dropdown, Navbar, TextInput } from "flowbite-react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "/pplogo.svg";
 import { TfiSearch } from "react-icons/tfi";
@@ -20,24 +20,24 @@ const Header = () => {
     <ul
       className={`absolute mt-4 flex flex-col md:mt-0 md:flex-row md:text-sm md:font-medium  md:block md:w-auto  transform transition-transform duration-300 rounded-b-lg shadow-md ${
         toggleNav ? "translate-y-0 top-10 md:top-[58px]" : " -translate-y-full"
-      }  left-0 right-0  py-2 text-center bg-[#1f2937]`}
+      }  left-0 right-0  py-2 text-center bg-slate-100 dark:bg-[#1f2937]`}
     >
       <li
-        className="p-2 w-1/2 my-2 mx-auto hover:bg-slate-700 rounded-md "
+        className="p-2 w-1/2 my-2 mx-auto hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md "
         active={path === "/"}
         as={"div"}
       >
         <Link to="/">Home</Link>
       </li>
       <li
-        className="p-2 w-1/2 my-2 mx-auto hover:bg-slate-700 rounded-md "
+        className="p-2 w-1/2 my-2 mx-auto hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md "
         active={path === "/about"}
         as={"div"}
       >
         <Link to="/about">About</Link>
       </li>
       <li
-        className="p-2  w-1/2 my-2 mx-auto hover:bg-slate-700 rounded-md "
+        className="p-2 w-1/2 my-2 mx-auto hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md  "
         active={path === "/projects"}
         as={"div"}
       >
@@ -135,21 +135,21 @@ const Header = () => {
           <span className="flex flex-col justify-center items-center">
             {/* Top bar of the hamburger/X */}
             <span
-              className={`w-5 h-0.5 bg-white transition-all duration-300 transform origin-center ${
+              className={`w-5 h-0.5 bg-black dark:bg-white transition-all duration-300 transform origin-center ${
                 toggleNav ? "rotate-45 translate-y-[1.7px]" : "rotate-0 mb-1"
               }`}
             ></span>
 
             {/* Middle bar (hidden when X is active) */}
             <span
-              className={`w-5 h-0.5 bg-white transition-all duration-300 transform origin-center ${
+              className={`w-5 h-0.5 bg-black dark:bg-white transition-all duration-300 transform origin-center ${
                 toggleNav ? "opacity-0" : ""
               }`}
             ></span>
 
             {/* Bottom bar of the hamburger/X */}
             <span
-              className={`w-5 h-0.5 bg-white transition-all duration-300 transform origin-center ${
+              className={`w-5 h-0.5 bg-black dark:bg-white transition-all duration-300 transform origin-center ${
                 toggleNav ? "-rotate-45 -translate-y-[1.7px]" : "rotate-0 mt-1"
               }`}
             ></span>
