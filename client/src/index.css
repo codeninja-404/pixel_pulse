@@ -8,6 +8,9 @@ body {
 /* .navbar + * {
   @apply h-screen;
 } */
+.navactive .active {
+  @apply bg-slate-300 dark:bg-slate-700;
+}
 .ql-editor {
   font-size: 1.05rem;
 }

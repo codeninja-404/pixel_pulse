@@ -1,5 +1,5 @@
 import { Button, Dropdown, Navbar, TextInput } from "flowbite-react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import logo from "/pplogo.svg";
 import { TfiSearch } from "react-icons/tfi";
 import { FaMoon, FaSun } from "react-icons/fa";
@@ -14,41 +14,11 @@ const Header = () => {
   const { currentUser } = useSelector((state) => state.user);
   const { theme } = useSelector((state) => state.theme);
   const [toggleNav, setToggleNav] = useState(false);
-
-  const navlinks = (
-    // <div className="">
-    <ul
-      className={`absolute mt-4 flex flex-col md:mt-0 md:flex-row md:text-sm md:font-medium  md:block md:w-auto  transform transition-transform duration-300 rounded-b-lg shadow-md ${
-        toggleNav ? "translate-y-0 top-10 md:top-[58px]" : " -translate-y-full"
-      }  left-0 right-0  py-2 text-center bg-slate-100 dark:bg-[#1f2937]`}
-    >
-      <li className=" " active={path === "/"} as={"div"}>
-        <Link
-          className="p-2 block w-1/2 my-2 mx-auto hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md"
-          to="/"
-        >
-          Home
-        </Link>
-      </li>
-      <li active={path === "/about"} as={"div"}>
-        <Link
-          className="p-2 block w-1/2 my-2 mx-auto hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md"
-          to="/about"
-        >
-          About
-        </Link>
-      </li>
-      <li active={path === "/projects"} as={"div"}>
-        <Link
-          className="p-2 block w-1/2 my-2 mx-auto hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md"
-          to="/projects"
-        >
-          Projects
-        </Link>
-      </li>
-    </ul>
-    // </div>
-  );
+  const navLinks = [
+    { to: "/", text: "Home" },
+    { to: "/about", text: "About" },
+    { to: "/projects", text: "Projects" },
+  ];
 
   const handleSignout = async () => {
     try {
@@ -78,18 +48,19 @@ const Header = () => {
       </form>
       <Button
         className="
-           lg:hidden"
+           lg:hidden  h-9 m-1 flex justify-center items-center overflow-hidden"
         color="gray"
         pill
       >
         <TfiSearch />
       </Button>
-      <div className="flex gap-2 md:order-2">
+      <div className="flex gap-2 md:order-2 ">
         <Button
           onClick={() => {
             dispatch(toggleTheme());
           }}
-          className="hidden sm:inline "
+          className="hidden  w-9 h-9 m-1
+           md:flex justify-center items-center bg-gray-200  rounded-full overflow-hidden "
           color="gray"
           pill
         >
@@ -104,7 +75,7 @@ const Header = () => {
                 <img
                   src={currentUser?.profilePicture}
                   alt="user"
-                  className="object-cover w-10 h-10 rounded-full"
+                  className="object-cover w-9 h-9 m-1 rounded-full"
                 />
               }
             >
@@ -132,34 +103,53 @@ const Header = () => {
         </Link>
         <Button
           onClick={() => setToggleNav(!toggleNav)}
-          className=" w-10 h-10 bg-gray-200  rounded-full overflow-hidden "
+          className=" w-9 h-9 m-1
+           flex justify-center items-center bg-gray-200  rounded-full overflow-hidden "
           color="gray"
         >
           <span className="flex flex-col justify-center items-center">
             {/* Top bar of the hamburger/X */}
             <span
-              className={`w-5 h-0.5 bg-black dark:bg-white transition-all duration-300 transform origin-center ${
-                toggleNav ? "rotate-45 translate-y-[1.7px]" : "rotate-0 mb-1"
+              className={`w-5 h-[3px] rounded-full bg-black dark:bg-white transition-all duration-300 transform origin-center ${
+                toggleNav ? "rotate-45 translate-y-[3px]" : "rotate-0 mb-1"
               }`}
             ></span>
 
             {/* Middle bar (hidden when X is active) */}
             <span
-              className={`w-5 h-0.5 bg-black dark:bg-white transition-all duration-300 transform origin-center ${
+              className={`w-5 h-[3px] rounded-full bg-black dark:bg-white transition-all duration-300 transform origin-center ${
                 toggleNav ? "opacity-0" : ""
               }`}
             ></span>
 
             {/* Bottom bar of the hamburger/X */}
             <span
-              className={`w-5 h-0.5 bg-black dark:bg-white transition-all duration-300 transform origin-center ${
-                toggleNav ? "-rotate-45 -translate-y-[1.7px]" : "rotate-0 mt-1"
+              className={`w-5 h-[3px] rounded-full bg-black dark:bg-white transition-all duration-300 transform origin-center ${
+                toggleNav ? "-rotate-45 -translate-y-[3px]" : "rotate-0 mt-1"
               }`}
             ></span>
           </span>
         </Button>
       </div>
-      {navlinks}
+      <ul
+        className={`absolute mt-4 flex flex-col md:mt-0 md:flex-row md:text-sm md:font-medium  md:block md:w-auto  transform transition-transform duration-300 rounded-b-lg shadow-md navactive ${
+          toggleNav
+            ? "translate-y-0 top-10 md:top-[58px]"
+            : " -translate-y-full"
+        }  left-0 right-0  py-2 text-center bg-slate-100 dark:bg-[#1f2937]`}
+      >
+        {navLinks.map((link, index) => (
+          <li key={index} className=" ">
+            <NavLink
+              className={`p-2 block w-1/2 my-2 mx-auto hover:bg-slate-300 dark:hover:bg-slate-700 rounded-md`}
+              to={link.to}
+            >
+              {link.text}
+            </NavLink>
+          </li>
+        ))}
+      </ul>
+      {/* {navlinks} */}
     </Navbar>
   );
 };
