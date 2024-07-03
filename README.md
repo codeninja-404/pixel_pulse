@@ -1,3 +1,16 @@
+### ADMIN LOGIN
+- EMAIL : admin@pixelpulse.com
+- PASS : admin7898
+
+## Features
+
+- **Enhanced Security**: Robust security measures for both client and backend, specifically for admin pages.
+- **Admin Dashboard**: Effortlessly manage posts, comments, and users with full CRUD operations via MongoDB.
+- **Responsive Design**: Fully responsive layout with an elegant dark mode for optimal user experience on any device.
+- **Sophisticated Search**: Advanced search functionality, including title search, result limiting, and sorting through a sleek sidebar using cutting-edge MongoDB queries.
+- **Interactive Community**: Users can easily leave, edit, and delete comments, fostering a dynamic and engaging community.
+- **Performance Optimization**: Optimized performance for fast loading times and smooth interactions, ensuring a superior user experience.
+
 # PIXEL-PULSE
 
 This repository contains a full stack application with a Vite React frontend and a Node.js/Express backend.
@@ -21,15 +34,6 @@ project/
 ├── package.json      # Project manifest for backend
 └── README.md         # Documentation for entire project
 ```
-
-## Features
-
-- **Enhanced Security**: Robust security measures for both client and backend, specifically for admin pages.
-- **Admin Dashboard**: Effortlessly manage posts, comments, and users with full CRUD operations via MongoDB.
-- **Responsive Design**: Fully responsive layout with an elegant dark mode for optimal user experience on any device.
-- **Sophisticated Search**: Advanced search functionality, including title search, result limiting, and sorting through a sleek sidebar using cutting-edge MongoDB queries.
-- **Interactive Community**: Users can easily leave, edit, and delete comments, fostering a dynamic and engaging community.
-- **Performance Optimization**: Optimized performance for fast loading times and smooth interactions, ensuring a superior user experience.
 
 ## Getting Started
 
