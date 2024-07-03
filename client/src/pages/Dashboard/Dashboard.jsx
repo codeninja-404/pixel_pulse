@@ -23,7 +23,7 @@ const Dashboard = () => {
         {/* dashboard sidebar */}
         <DashSidebar />
       </div>
-      <div className="md:w-[calc(100vw-14rem)]">
+      <div className="md:w-[calc(100vw-14rem)] overflow-x-hidden">
         {/* contents */}
         {tab === "profile" && <DashProfile />}
         {/* posts */}

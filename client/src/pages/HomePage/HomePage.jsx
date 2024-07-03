@@ -17,7 +17,9 @@ const HomePage = () => {
   return (
     <div className="min-h-screen pt-20">
       <div className="flex flex-col gap-6 p-10 md:p-28 text-center max-w-6xl mx-auto">
-        <h1 className="text-3xl font-bold lg:text-6xl">Welcome to my Blog</h1>
+        <h1 className="text-3xl font-bold lg:text-6xl">
+          WELCOME TO PIXEL PULSE
+        </h1>
         <p className="text-gray-500 text-xs sm:text-sm">
           Explore a diverse array of resources including articles and tutorials
           covering essential topics in web development, software engineering,
