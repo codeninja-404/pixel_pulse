@@ -1,5 +1,5 @@
 import { Button, Dropdown, Navbar, TextInput } from "flowbite-react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import logo from "/pplogo.svg";
 import { TfiSearch } from "react-icons/tfi";
 import { FaMoon, FaSun } from "react-icons/fa";
@@ -7,11 +7,13 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { toggleTheme } from "../../redux/theme/themeSlice";
 import { signoutSuccess } from "../../redux/user/userSlice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const Header = () => {
-  const path = useLocation().pathname;
+  const location = useLocation();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
+  const [searchTerm, setSearchTerm] = useState("");
   const { theme } = useSelector((state) => state.theme);
   const [toggleNav, setToggleNav] = useState(false);
   const navLinks = [
@@ -19,6 +21,13 @@ const Header = () => {
     { to: "/about", text: "About" },
     { to: "/projects", text: "Projects" },
   ];
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const searchTermFromUrl = urlParams.get("searchTerm");
+    if (searchTermFromUrl) {
+      setSearchTerm(searchTermFromUrl);
+    }
+  }, [location.search]);
 
   const handleSignout = async () => {
     try {
@@ -33,17 +42,26 @@ const Header = () => {
       console.log(error.message);
     }
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const urlParams = new URLSearchParams(location.search);
+    urlParams.set("searchTerm", searchTerm);
+    const searchQuery = urlParams.toString();
+    navigate(`/search?${searchQuery}`);
+  };
   return (
     <Navbar className="border-b-2 fixed w-screen z-50 navbar flex flex-col">
       <Link to="/">
         <img className="w-20 object-contain" src={logo} alt="" />
       </Link>
-      <form>
+      <form onSubmit={handleSubmit}>
         <TextInput
           type="text"
           placeholder="Search...."
           rightIcon={TfiSearch}
           className="hidden lg:inline"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
         ></TextInput>
       </form>
       <Button
