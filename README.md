@@ -22,6 +22,15 @@ project/
 └── README.md         # Documentation for entire project
 ```
 
+## Features
+
+- **Enhanced Security**: Robust security measures for both client and backend, specifically for admin pages.
+- **Admin Dashboard**: Effortlessly manage posts, comments, and users with full CRUD operations via MongoDB.
+- **Responsive Design**: Fully responsive layout with an elegant dark mode for optimal user experience on any device.
+- **Sophisticated Search**: Advanced search functionality, including title search, result limiting, and sorting through a sleek sidebar using cutting-edge MongoDB queries.
+- **Interactive Community**: Users can easily leave, edit, and delete comments, fostering a dynamic and engaging community.
+- **Performance Optimization**: Optimized performance for fast loading times and smooth interactions, ensuring a superior user experience.
+
 ## Getting Started
 
 Follow these steps to get the application up and running:
@@ -31,7 +40,7 @@ Follow these steps to get the application up and running:
 ```bash
 #SSH
 git clone git@github.com:codeninja-404/pixel_pulse.git
-#HTTPS 
+#HTTPS
 git clone https://github.com/codeninja-404/pixel_pulse.git
 ```
 
@@ -103,5 +112,3 @@ This will generate an optimized build in the `client/dist` directory.
 ### Build the Server
 
 The server typically doesn't need a build step if it's a simple Node.js app. Ensure your production server is configured to serve the built React app.
-
-
