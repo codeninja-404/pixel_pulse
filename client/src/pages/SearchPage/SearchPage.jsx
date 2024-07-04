@@ -144,7 +144,11 @@ const SearchPage = () => {
           {!loading &&
             posts.length > 0 &&
             posts.map((post) => <PostCard key={post._id} post={post} />)}
-          {showMore && <Button onClick={handleShowMore}>Show More</Button>}
+        </div>
+        <div className="flex justify-center mb-7">
+          {!loading && showMore && (
+            <Button onClick={handleShowMore}>Show More</Button>
+          )}
         </div>
       </div>
     </div>
