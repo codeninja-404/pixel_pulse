@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { toggleTheme } from "../../redux/theme/themeSlice";
 import { signoutSuccess } from "../../redux/user/userSlice";
 import { useEffect, useState } from "react";
+import { HiXCircle } from "react-icons/hi";
 const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const { theme } = useSelector((state) => state.theme);
   const [toggleNav, setToggleNav] = useState(false);
+  const [isFloatingSearchVisible, setIsFloatingSearchVisible] = useState(false);
   const navLinks = [
     { to: "/", text: "Home" },
     { to: "/about", text: "About" },
@@ -55,29 +57,69 @@ const Header = () => {
         <img className="w-20 object-contain" src={logo} alt="" />
       </Link>
       <form onSubmit={handleSubmit}>
-        <TextInput
-          type="text"
-          placeholder="Search...."
-          rightIcon={TfiSearch}
-          className="hidden lg:inline"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        ></TextInput>
+        <div className="relative hidden lg:block ">
+          <input
+            type="text"
+            placeholder="Search...."
+            className="border rounded-lg bg-[#374151] pr-10 pl-4 py-2 w-full"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <Button
+            type="submit"
+            className="absolute !bg-teal-500 inset-y-0 right-0 rounded-bl-3xl rounded-tl-3xl  flex items-center h-full"
+          >
+            <TfiSearch className="" />
+          </Button>
+        </div>
       </form>
+
+      {/* floting input */}
       <Button
-        className="
-           lg:hidden  h-9 m-1 flex justify-center items-center overflow-hidden"
+        className="lg:hidden h-9 m-1 flex justify-center items-center overflow-hidden"
         color="gray"
         pill
+        onClick={() => setIsFloatingSearchVisible(true)}
       >
         <TfiSearch />
       </Button>
+      {isFloatingSearchVisible && (
+        <div className="fixed lg:hidden inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
+          <div className=" rounded-lg shadow-lg  max-w-md mx-auto">
+            <form onSubmit={handleSubmit} className="flex items-center">
+              <div className="relative ">
+                <input
+                  type="text"
+                  placeholder="Search...."
+                  className="border text-white rounded-lg bg-[#374151] pr-10 pl-4 py-2 w-full"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <Button
+                  type="submit"
+                  className="absolute !bg-teal-500 inset-y-0 right-0 rounded-bl-3xl rounded-tl-3xl  flex items-center"
+                >
+                  <TfiSearch className="" />
+                </Button>
+              </div>
+              <Button
+                type="button"
+                onClick={() => setIsFloatingSearchVisible(false)}
+                className="ml-1 px-0 w-8 !bg-red-500 flex justify-center items-center rounded-br-3xl rounded-tr-3xl"
+              >
+                <HiXCircle className="text-xl" />
+              </Button>
+            </form>
+          </div>
+        </div>
+      )}
+
       <div className="flex gap-2 md:order-2 ">
         <Button
           onClick={() => {
             dispatch(toggleTheme());
           }}
-          className="hidden  w-9 h-9 m-1
+          className="  w-9 h-9 m-1
            md:flex justify-center items-center bg-gray-200  rounded-full overflow-hidden "
           color="gray"
           pill

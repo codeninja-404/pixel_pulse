@@ -76,56 +76,57 @@ const DashUsers = () => {
     }
   };
   return (
-    <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar  scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500 ">
+    <div className="table-auto  md:mx-auto p-3">
       {currentUser.isAdmin && users.length > 0 ? (
         <>
-          <Table hoverable className="shadow-md rounded-lg">
-            <Table.Head>
-              <Table.HeadCell>Date Created</Table.HeadCell>
-              <Table.HeadCell>Image</Table.HeadCell>
-              <Table.HeadCell>Username</Table.HeadCell>
-              <Table.HeadCell>Email</Table.HeadCell>
-              <Table.HeadCell>Admin</Table.HeadCell>
-              <Table.HeadCell>Delete</Table.HeadCell>
-            </Table.Head>
-            {users.map((user, idx) => (
-              <Table.Body className="divide-y" key={idx}>
-                <Table.Row className="bg-gray-200 dark:border-gray-700 dark:bg-gray-800">
-                  <Table.Cell>
-                    {new Date(user.createdAt).toLocaleDateString()}
-                  </Table.Cell>
-                  <Table.Cell>
-                    <img
-                      src={user.profilePicture}
-                      alt={user.username}
-                      className="bg-[#000000c4] w-10 h-10 object-cover rounded-2xl"
-                    />
-                  </Table.Cell>
-                  <Table.Cell>{user.username}</Table.Cell>
-                  <Table.Cell>{user.email}</Table.Cell>
-                  <Table.Cell>
-                    {user.isAdmin ? (
-                      <FaCheck className="text-green-500 mx-auto" />
-                    ) : (
-                      <FaTimes className="text-red-500 mx-auto" />
-                    )}
-                  </Table.Cell>
-                  <Table.Cell>
-                    <span
-                      onClick={() => {
-                        setShowModal(true);
-                        setUserIdToDelete(user._id);
-                      }}
-                      className="text-md text-red-500 hover:underline cursor-pointer"
-                    >
-                      Delete
-                    </span>
-                  </Table.Cell>
-                </Table.Row>
-              </Table.Body>
-            ))}
-          </Table>
-
+          <div className="overflow-x-scroll scrollbar  scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
+            <Table hoverable className="shadow-md rounded-lg">
+              <Table.Head>
+                <Table.HeadCell>Date Created</Table.HeadCell>
+                <Table.HeadCell>Image</Table.HeadCell>
+                <Table.HeadCell>Username</Table.HeadCell>
+                <Table.HeadCell>Email</Table.HeadCell>
+                <Table.HeadCell>Admin</Table.HeadCell>
+                <Table.HeadCell>Delete</Table.HeadCell>
+              </Table.Head>
+              {users.map((user, idx) => (
+                <Table.Body className="divide-y" key={idx}>
+                  <Table.Row className="bg-gray-200 dark:border-gray-700 dark:bg-gray-800">
+                    <Table.Cell>
+                      {new Date(user.createdAt).toLocaleDateString()}
+                    </Table.Cell>
+                    <Table.Cell>
+                      <img
+                        src={user.profilePicture}
+                        alt={user.username}
+                        className="bg-[#000000c4] w-10 h-10 object-cover rounded-2xl"
+                      />
+                    </Table.Cell>
+                    <Table.Cell>{user.username}</Table.Cell>
+                    <Table.Cell>{user.email}</Table.Cell>
+                    <Table.Cell>
+                      {user.isAdmin ? (
+                        <FaCheck className="text-green-500 mx-auto" />
+                      ) : (
+                        <FaTimes className="text-red-500 mx-auto" />
+                      )}
+                    </Table.Cell>
+                    <Table.Cell>
+                      <span
+                        onClick={() => {
+                          setShowModal(true);
+                          setUserIdToDelete(user._id);
+                        }}
+                        className="text-md text-red-500 hover:underline cursor-pointer"
+                      >
+                        Delete
+                      </span>
+                    </Table.Cell>
+                  </Table.Row>
+                </Table.Body>
+              ))}
+            </Table>
+          </div>
           {showMore && (
             <div className=" mx-auto flex justify-center">
               <button

@@ -186,3 +186,21 @@ body {
 .dark .post-content strong {
   color: #78d600;
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-default::-webkit-scrollbar {
+  width: 16px;
+}
+
+.scrollbar-default::-webkit-scrollbar-thumb {
+  background-color: !#933838; /* Color of the scrollbar handle */
+  border-radius: 10px;
+  border: 3px solid !#842e2e; /* Padding around handle */
+}
+
+.scrollbar-default::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Color on hover */
+}

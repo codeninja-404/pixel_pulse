@@ -72,52 +72,56 @@ const DashComments = () => {
   };
 
   return (
-    <div className="table-auto overflow-x-scroll md:mx-auto p-3 scrollbar  scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500 h-screen">
+    <div className="table-auto  md:mx-auto p-3 ">
       {currentUser.isAdmin && comments.length > 0 ? (
         <>
-          <Table hoverable className="shadow-md">
-            <Table.Head>
-              <Table.HeadCell>Updated at</Table.HeadCell>
-              <Table.HeadCell>Comment</Table.HeadCell>
-              <Table.HeadCell>likes</Table.HeadCell>
-              <Table.HeadCell>IDs</Table.HeadCell>
+          <div className="overflow-x-scroll scrollbar  scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
+            <Table hoverable className="shadow-md">
+              <Table.Head>
+                <Table.HeadCell>Updated at</Table.HeadCell>
+                <Table.HeadCell>Comment</Table.HeadCell>
+                <Table.HeadCell>likes</Table.HeadCell>
+                <Table.HeadCell>IDs</Table.HeadCell>
 
-              <Table.HeadCell>Delete</Table.HeadCell>
-            </Table.Head>
-            {comments.map((comment) => (
-              <Table.Body className="divide-y" key={comment._id}>
-                <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                  <Table.Cell>
-                    {new Date(comment.updatedAt).toLocaleDateString()}
-                  </Table.Cell>
-                  <Table.Cell>{comment.content}</Table.Cell>
-                  <Table.Cell>{comment.numberOfLikes}</Table.Cell>
-                  <Table.Cell>
-                    <p className="text-xs">
-                      <span className="text-green-500 font-bold">POSTED :</span>{" "}
-                      {comment.postId}{" "}
-                    </p>
-                    <p className="text-xs">
-                      <span className="text-green-500 font-bold">USER :</span>{" "}
-                      {comment.userId}
-                    </p>
-                  </Table.Cell>
+                <Table.HeadCell>Delete</Table.HeadCell>
+              </Table.Head>
+              {comments.map((comment) => (
+                <Table.Body className="divide-y" key={comment._id}>
+                  <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                    <Table.Cell>
+                      {new Date(comment.updatedAt).toLocaleDateString()}
+                    </Table.Cell>
+                    <Table.Cell>{comment.content}</Table.Cell>
+                    <Table.Cell>{comment.numberOfLikes}</Table.Cell>
+                    <Table.Cell>
+                      <p className="text-xs">
+                        <span className="text-green-500 font-bold">
+                          POSTED :
+                        </span>{" "}
+                        {comment.postId}{" "}
+                      </p>
+                      <p className="text-xs">
+                        <span className="text-green-500 font-bold">USER :</span>{" "}
+                        {comment.userId}
+                      </p>
+                    </Table.Cell>
 
-                  <Table.Cell>
-                    <span
-                      onClick={() => {
-                        setShowModal(true);
-                        setCommentIdToDelete(comment._id);
-                      }}
-                      className="font-medium text-red-500 hover:underline cursor-pointer"
-                    >
-                      Delete
-                    </span>
-                  </Table.Cell>
-                </Table.Row>
-              </Table.Body>
-            ))}
-          </Table>
+                    <Table.Cell>
+                      <span
+                        onClick={() => {
+                          setShowModal(true);
+                          setCommentIdToDelete(comment._id);
+                        }}
+                        className="font-medium text-red-500 hover:underline cursor-pointer"
+                      >
+                        Delete
+                      </span>
+                    </Table.Cell>
+                  </Table.Row>
+                </Table.Body>
+              ))}
+            </Table>
+          </div>
           {showMore && (
             <button
               onClick={handleShowMore}
@@ -128,7 +132,11 @@ const DashComments = () => {
           )}
         </>
       ) : (
-        <p>You have no comments yet!</p>
+        <div className="flex justify-center items-center h-full">
+          <span className="text-gray-500 text-lg">
+            You have no comments yet!
+          </span>
+        </div>
       )}
       <Modal
         show={showModal}
