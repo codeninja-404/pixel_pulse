@@ -59,7 +59,10 @@ export const signin = async (req, res, next) => {
     const { password: pass, ...rest } = validUser._doc;
     res
       .status(200)
-      .cookie("access_token", token, { httpOnly: true })
+      .cookie("access_token", token, {
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000,
+      })
       .json(rest);
   } catch (error) {
     next(error);
@@ -84,6 +87,7 @@ export const google = async (req, res, next) => {
         .status(200)
         .cookie("access_token", token, {
           httpOnly: true,
+          maxAge: 24 * 60 * 60 * 1000, // 1 day in milliseconds
         })
         .json(rest);
     } else {
