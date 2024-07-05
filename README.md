@@ -1,4 +1,5 @@
 ### ADMIN LOGIN
+
 - EMAIL : admin@pixelpulse.com
 - PASS : admin7898
 
@@ -98,21 +99,3 @@ yarn dev
 ```
 
 Open [http://localhost:5173](http://localhost:5173) in your browser to view the app. The page will auto-reload as you make changes.
-
-## Build for Production
-
-### Build the Client
-
-To build the React app for production, run:
-
-```bash
-npm run build
-# or
-yarn build
-```
-
-This will generate an optimized build in the `client/dist` directory.
-
-### Build the Server
-
-The server typically doesn't need a build step if it's a simple Node.js app. Ensure your production server is configured to serve the built React app.
