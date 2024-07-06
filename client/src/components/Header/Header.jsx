@@ -30,6 +30,51 @@ const Header = () => {
       setSearchTerm(searchTermFromUrl);
     }
   }, [location.search]);
+  useEffect(() => {
+    const handleScroll = () => {
+      setToggleNav(false);
+    };
+
+    const handleClickOutside = (event) => {
+      if (!event.target.closest(".navbar")) {
+        setToggleNav(false);
+        setIsFloatingSearchVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("click", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("click", handleClickOutside);
+    };
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setToggleNav(false);
+    };
+
+    const handleClickOutside = (event) => {
+      if (!event.target.closest(".navbar")) {
+        setToggleNav(false);
+        setIsFloatingSearchVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("click", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    setToggleNav(false);
+  }, [location.pathname]);
 
   const handleSignout = async () => {
     try {
@@ -61,7 +106,7 @@ const Header = () => {
           <input
             type="text"
             placeholder="Search...."
-            className="border rounded-lg bg-[#374151] pr-10 pl-4 py-2 w-full"
+            className="border rounded-lg dark:bg-[#374151] pr-10 pl-4 py-2 w-full"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
@@ -84,7 +129,7 @@ const Header = () => {
         <TfiSearch />
       </Button>
       {isFloatingSearchVisible && (
-        <div className="fixed lg:hidden inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
+        <div className="fixed lg:hidden inset-0 bg-gray-900 bg-opacity-90 flex justify-center items-center z-50">
           <div className=" rounded-lg shadow-lg  max-w-md mx-auto">
             <form onSubmit={handleSubmit} className="flex items-center">
               <div className="relative ">
@@ -198,6 +243,7 @@ const Header = () => {
             : " -translate-y-full"
         }  left-0 right-0  py-2 text-center bg-slate-100 dark:bg-[#1f2937]`}
       >
+        {/* {navlinks} */}
         {navLinks.map((link, index) => (
           <li key={index} className=" ">
             <NavLink
@@ -209,7 +255,6 @@ const Header = () => {
           </li>
         ))}
       </ul>
-      {/* {navlinks} */}
     </Navbar>
   );
 };
